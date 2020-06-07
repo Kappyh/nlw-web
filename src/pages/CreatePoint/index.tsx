@@ -34,7 +34,16 @@ const CreatePoint = () => {
   const [cities, setCities] = useState<Array<string>>([]);
   const [selectedCity, setSelectedCity] = useState<string>('0');
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+      setInitialPosition([latitude, longitude]);
+    })
+  }, [])
+  
   // primeiro param o que vai exec.(function), segundo param qual variavel gerencia a execução(se vazio exec. 1x)
   useEffect(() => {
     api.get('items').then(response => {
