@@ -43,7 +43,7 @@ const CreatePoint = () => {
       setInitialPosition([latitude, longitude]);
     })
   }, [])
-  
+
   // primeiro param o que vai exec.(function), segundo param qual variavel gerencia a execução(se vazio exec. 1x)
   useEffect(() => {
     api.get('items').then(response => {
@@ -132,7 +132,7 @@ const CreatePoint = () => {
             <h2>Endereço</h2>
             <span>Selecione o endereço no mapa</span>
           </legend>
-          <Map center={[-23.5645821, -46.6309262]} zoom={15} onClick={handleMapClick} >
+          <Map center={initialPosition} zoom={15} onClick={handleMapClick} >
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
